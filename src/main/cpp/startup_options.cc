@@ -81,6 +81,7 @@ StartupOptions::StartupOptions(const string &product_name,
       batch_cpu_scheduling(false),
       io_nice_level(-1),
       shutdown_on_low_sys_mem(false),
+      linkedin_workaround_tools_206604(false),
       oom_more_eagerly(false),
       oom_more_eagerly_threshold(100),
       write_command_log(true),
@@ -137,6 +138,7 @@ StartupOptions::StartupOptions(const string &product_name,
   RegisterNullaryStartupFlag("host_jvm_debug");
   RegisterNullaryStartupFlag("idle_server_tasks");
   RegisterNullaryStartupFlag("shutdown_on_low_sys_mem");
+  RegisterNullaryStartupFlag("linkedin_workaround_tools_206604");
   RegisterNullaryStartupFlag("ignore_all_rc_files");
   RegisterNullaryStartupFlag("unlimit_coredumps");
   RegisterNullaryStartupFlag("watchfs");
@@ -296,6 +298,12 @@ blaze_exit_code::ExitCode StartupOptions::ProcessArg(
   } else if (GetNullaryOption(arg, "--noshutdown_on_low_sys_mem")) {
     shutdown_on_low_sys_mem = false;
     option_sources["shutdown_on_low_sys_mem"] = rcfile;
+  } else if (GetNullaryOption(arg, "--linkedin_workaround_tools_206604")) {
+    linkedin_workaround_tools_206604 = true;
+    option_sources["linkedin_workaround_tools_206604"] = rcfile;
+  } else if (GetNullaryOption(arg, "--nolinkedin_workaround_tools_206604")) {
+    linkedin_workaround_tools_206604 = false;
+    option_sources["linkedin_workaround_tools_206604"] = rcfile;
   } else if (GetNullaryOption(arg, "--experimental_oom_more_eagerly")) {
     oom_more_eagerly = true;
     option_sources["experimental_oom_more_eagerly"] = rcfile;

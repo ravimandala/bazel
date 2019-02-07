@@ -767,6 +767,17 @@ public class BuildConfiguration implements BuildConfigurationApi {
     )
     public boolean transparentCompression;
 
+    // TODO(bazel-team): Remove this flag once there is a proper fix in place for validating artifacts in the right context.
+    @Option(
+      name = "linkedin_workaround_tools_206604",
+      defaultValue = "false",
+      documentationCategory = OptionDocumentationCategory.UNDOCUMENTED,
+      effectTags = { OptionEffectTag.BAZEL_INTERNAL_CONFIGURATION },
+      metadataTags = { OptionMetadataTag.EXPERIMENTAL },
+      help = "Temporary flag to allow skipping of artifacts validation from aspects."
+    )
+    public boolean skipArtifactValidation;
+
     @Option(
       name = "is host configuration",
       defaultValue = "false",

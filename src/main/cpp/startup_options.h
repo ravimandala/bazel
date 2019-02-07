@@ -251,6 +251,8 @@ class StartupOptions {
 
   bool shutdown_on_low_sys_mem;
 
+  bool linkedin_workaround_tools_206604;  // Skip artifact validation from aspects
+
   bool oom_more_eagerly;
 
   int oom_more_eagerly_threshold;
